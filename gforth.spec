@@ -54,8 +54,6 @@ rm -f $RPM_BUILD_ROOT%{_bindir}/{gforth,gforthmi}
 mv -f $RPM_BUILD_ROOT%{_bindir}/gforth-0.4.0 $RPM_BUILD_ROOT%{_bindir}/gforth
 mv -f $RPM_BUILD_ROOT%{_bindir}/gforthmi-0.4.0 $RPM_BUILD_ROOT%{_bindir}/gforthmi
 
-gzip -9nf AUTHORS README NEWS BUGS ToDo
-
 %post
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
@@ -67,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {AUTHORS,README,NEWS,BUGS,ToDo}.gz
+%doc AUTHORS README NEWS BUGS ToDo
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libdir}/gforth
 %dir %{_libdir}/gforth/site-forth
