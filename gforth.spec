@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Development/Languages
 Source0:	ftp://ftp.gnu.org/gnu/gforth/%{name}-%{version}.tar.gz
+# Source0-md5:	91855c11c3989d0ba92139e278f047d0
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-opt.patch
 BuildRequires:	autoconf >= 2.54
