@@ -1,0 +1,36 @@
+--- gforth-0.4.0/doc/gforth.ds.orig	Sat Dec 19 11:22:29 1998
++++ gforth-0.4.0/doc/gforth.ds	Sun May 20 12:06:19 2001
+@@ -3,9 +3,9 @@
+ @comment %**start of header (This is for running Texinfo on a region.)
+ @setfilename gforth.info
+ @settitle Gforth Manual
+-@dircategory GNU programming tools
++@dircategory Programming Languages:
+ @direntry
+-* Gforth: (gforth).             A fast interpreter for the Forth language.
++* Gforth: (gforth).			A fast Forth language interpreter
+ @end direntry
+ @comment @setchapternewpage odd
+ @macro progstyle {}
+@@ -2287,8 +2287,8 @@
+ as locals stack. Like the other stacks, the locals stack grows toward
+ lower addresses. A few primitives allow an efficient implementation:
+ 
+-doc-@local#
+-doc-f@local#
++doc-@@local#
++doc-f@@local#
+ doc-laddr#
+ doc-lp+!#
+ doc-lp!
+@@ -2302,8 +2302,8 @@
+ compile the right specialized version, or the general version, as
+ appropriate:
+ 
+-doc-compile-@local
+-doc-compile-f@local
++doc-compile-@@local
++doc-compile-f@@local
+ doc-compile-lp+!
+ 
+ Combinations of conditional branches and @code{lp+!#} like
