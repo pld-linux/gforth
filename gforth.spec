@@ -2,7 +2,7 @@ Summary:	GNU Forth Language
 Summary(pl):	Kompilator GNU Forth 
 Name:		gforth
 Version:	0.4.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
@@ -63,7 +63,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {AUTHORS,README,NEWS,BUGS,ToDo}.gz
 %attr(755,root,root) %{_bindir}/*
-%{_libdir}/gforth
+%dir %{_libdir}/gforth
+%dir %{_libdir}/gforth/site-forth
+%dir %{_libdir}/gforth/0.4.0
+%attr (755,root,root) %{_libdir}/gforth/0.4.0/gforth.fi
 %{_infodir}/*info*
 %{_mandir}/man1/*
 %{_datadir}/gforth
