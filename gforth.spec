@@ -59,7 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755, root, root) /usr/bin/*
 /usr/lib/gforth
 %{_infodir}/*info*
-%attr(644, root,  man) %{_mandir}/man1/*
+%{_mandir}/man1/*
 /usr/share/gforth
 
 %changelog
