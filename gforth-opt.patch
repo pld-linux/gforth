@@ -10,16 +10,3 @@
  		;;
  #generic should work for IA64
  #	ia64*)
---- gforth-0.6.1/engine/Makefile.in.orig	2003-03-09 16:06:46.000000000 +0100
-+++ gforth-0.6.1/engine/Makefile.in	2003-05-11 01:51:18.000000000 +0200
-@@ -74,8 +74,8 @@
- SWITCHES = $(XCFLAGS) $(XDEFINES)
- ENGINE_FLAGS = @ENGINE_FLAGS@ -fno-defer-pop -fcaller-saves
- DEBUGFLAG = @DEBUGFLAG@
--CFLAGS	= $(DEBUGFLAG) -I$(srcdir)/../arch/$(machine) -I. -O2 -Wall $(SWITCHES) -DDEFAULTPATH=\"$(FORTHPATH)\"
--CFLAGS2	= $(DEBUGFLAG) -I$(srcdir)/../arch/$(machine) -I. -O2 -Wall $(SWITCHES) -DDEFAULTPATH=\"$(FORTHPATH)\"
-+CFLAGS	= $(DEBUGFLAG) -I$(srcdir)/../arch/$(machine) -I. -Wall $(SWITCHES) -DDEFAULTPATH=\"$(FORTHPATH)\"
-+CFLAGS2	= $(DEBUGFLAG) -I$(srcdir)/../arch/$(machine) -I. -Wall $(SWITCHES) -DDEFAULTPATH=\"$(FORTHPATH)\"
- FORTHKFLAGS= --die-on-signal -p "..$(PATHSEP)$(srcdir)" -i ../$(kernel_fi)
- FORTHK	= ../gforth $(FORTHKFLAGS)
- 
