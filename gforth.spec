@@ -1,8 +1,8 @@
 Summary:     GNU Forth Language
 Summary(pl): Kompilator GNU Forth 
 Name:        gforth
-Version:     0.3.0
-Release:     2
+Version:     0.4.0
+Release:     1
 Copyright:   GPL
 Group:       Languages
 Source:      ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz 
