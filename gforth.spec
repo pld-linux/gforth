@@ -35,7 +35,7 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 make prefix=$RPM_BUILD_ROOT/usr install
-strip $RPM_BUILD_ROOT/usr/bin/*
+strip $RPM_BUILD_ROOT%{_bindir}/*
 
 gzip -9nf $RPM_BUILD_ROOT%{_infodir}/gforth.info*
 
@@ -56,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %attr(644, root, root, 755)
 %doc README TAGS BUGS ToDo
-%attr(755, root, root) /usr/bin/*
+%attr(755, root, root) %{_bindir}/*
 %{_libdir}/gforth
 %{_infodir}/*info*
 %{_mandir}/man1/*
