@@ -37,15 +37,15 @@ rm -rf $RPM_BUILD_ROOT
 make prefix=$RPM_BUILD_ROOT/usr install
 strip $RPM_BUILD_ROOT/usr/bin/*
 
-gzip -9nf $RPM_BUILD_ROOT/usr/info/gforth.info*
+gzip -9nf $RPM_BUILD_ROOT%{_infodir}/gforth.info*
 
 %post
-/sbin/install-info /usr/info/gforth.info.gz /usr/info/dir \
+/sbin/install-info %{_infodir}/gforth.info.gz /usr/info/dir \
 --section "Programming:" --entry \
 "* Gforth: (gforth.info).                       The GNU ANS Forth."
 
 %preun
-/sbin/install-info --delete /usr/info/gforth.info.gz /usr/info/dir \
+/sbin/install-info --delete %{_infodir}/gforth.info.gz /usr/info/dir \
 --section "Programming:" --entry \
 "* Gforth: (gforth.info).                       The GNU ANS Forth."
 
@@ -58,8 +58,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc README TAGS BUGS ToDo
 %attr(755, root, root) /usr/bin/*
 /usr/lib/gforth
-/usr/info/*info*
-%attr(644, root,  man) /usr/man/man1/*
+%{_infodir}/*info*
+%attr(644, root,  man) %{_mandir}/man1/*
 /usr/share/gforth
 
 %changelog
