@@ -33,7 +33,7 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install prefix=$RPM_BUILD_ROOT%{_prefix} \
+%{__make} install prefix=$RPM_BUILD_ROOT%{_prefix} \
 	exec_prefix=$RPM_BUILD_ROOT%{_prefix} \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
 	infodir=$RPM_BUILD_ROOT%{_infodir}
