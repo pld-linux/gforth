@@ -2,11 +2,14 @@ Summary:	GNU Forth Language
 Summary(pl):	Kompilator GNU Forth 
 Name:		gforth
 Version:	0.4.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Languages
+Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
-Source0:	ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.complang.tuwien.ac.at/pub/forth/gforth/%{name}-%{version}.tar.gz
+Patch0:		%{name}-info.patch
+BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -25,11 +28,14 @@ kompletowanie i historiê wprowadzania ci±gów znaków.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
 %configure
 
 %{__make}
+
+(cd doc; makeinfo gforth.ds)
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -38,14 +44,11 @@ rm -rf $RPM_BUILD_ROOT
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
 	infodir=$RPM_BUILD_ROOT%{_infodir}
 
-ln -sf gforth-0.4.0 $RPM_BUILD_ROOT%{_bindir}/gforth
-ln -sf gforthmi-0.4.0 $RPM_BUILD_ROOT%{_bindir}/gforthmi
+rm -f $RPM_BUILD_ROOT%{_bindir}/{gforth,gforthmi}
+mv -f $RPM_BUILD_ROOT%{_bindir}/gforth-0.4.0 $RPM_BUILD_ROOT%{_bindir}/gforth
+mv -f $RPM_BUILD_ROOT%{_bindir}/gforthmi-0.4.0 $RPM_BUILD_ROOT%{_bindir}/gforthmi
 
-strip $RPM_BUILD_ROOT%{_bindir}/* || :
-
-gzip -9nf $RPM_BUILD_ROOT%{_infodir}/gforth.info* \
-	$RPM_BUILD_ROOT%{_mandir}/man1/* \
-	AUTHORS README NEWS BUGS ToDo
+gzip -9nf AUTHORS README NEWS BUGS ToDo
 
 %post
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
