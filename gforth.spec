@@ -31,7 +31,7 @@ kompletowanie i historiê wprowadzania ci±gów znaków.
 %patch -p1
 
 %build
-%configure
+%configure2_13
 
 %{__make}
 
