@@ -1,14 +1,15 @@
 Summary:	GNU Forth Language
 Summary(pl):	Kompilator GNU Forth
 Name:		gforth
-Version:	0.6.1
+Version:	0.6.2
 Release:	1
 License:	GPL
 Group:		Development/Languages
 Source0:	ftp://ftp.gnu.org/gnu/gforth/%{name}-%{version}.tar.gz
-# Source0-md5:	91855c11c3989d0ba92139e278f047d0
+# Source0-md5:	869112bd762b07fc4d2038a2d9965148
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-opt.patch
+Patch2:		%{name}-acfix.patch
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	texinfo
@@ -35,6 +36,7 @@ rozpowszechniany na Powszechnej Licencji Publicznej GNU.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 rm -f doc/*.info*
 
@@ -51,6 +53,7 @@ makeinfo vmgen.texi
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	prefix=$RPM_BUILD_ROOT%{_prefix} \
 	exec_prefix=$RPM_BUILD_ROOT%{_prefix} \
