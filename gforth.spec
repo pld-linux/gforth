@@ -61,15 +61,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/*info*
 %{_mandir}/man1/*
 %{_datadir}/gforth
-
-%changelog
-* Sun Nov 22 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.3.0-2]
-- added using $RPM_OPT_FLAGS during compile,
-- added %post, %preun with {un}registering info pages,
-- removed making htm and ps documentation (it can be generatred from
-  info pages by onyone in anytime).
-
-* Wed Sep 23 1998 Wojciech "Sas" Ciêciwa <cieciwa@zarz.agh.edu.pl>
-  [0.3.0-1]
-- Building RPM.
