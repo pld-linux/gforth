@@ -34,7 +34,7 @@ kompletowanie i historiê wprowadzania ci±gów znaków.
 
 %build
 rm -f missiong
-aclocal
+%{__aclocal}
 %{__autoconf}
 cp -f /usr/share/automake/{missing,mkinstalldirs,install-sh,config*} .
 %configure
