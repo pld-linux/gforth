@@ -57,7 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644, root, root, 755)
 %doc README TAGS BUGS ToDo
 %attr(755, root, root) /usr/bin/*
-/usr/lib/gforth
+%{_libdir}/gforth
 %{_infodir}/*info*
 %{_mandir}/man1/*
 /usr/share/gforth
