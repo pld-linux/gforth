@@ -1,12 +1,11 @@
-Summary:     GNU Forth Language
-Summary(pl): Kompilator GNU Forth 
-Name:        gforth
-Version:     0.4.0
-Release:     1
-Copyright:   GPL
-Group:       Languages
-Source:      ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz 
-Patch0:      gforth-makefile.patch
+Summary:	GNU Forth Language
+Summary(pl):	Kompilator GNU Forth 
+Name:		gforth
+Version:	0.4.0
+Release:	1
+Copyright:	GPL
+Group:		Languages
+Source:		ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz 
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -25,7 +24,6 @@ i historiê wprowadzania ci±gów znaków.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure
@@ -34,10 +32,19 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make prefix=$RPM_BUILD_ROOT/usr install
-strip $RPM_BUILD_ROOT%{_bindir}/*
+make install prefix=$RPM_BUILD_ROOT/usr \
+	exec_prefix=$RPM_BUILD_ROOT/usr \
+	mandir=$RPM_BUILD_ROOT%{_mandir} \
+	infodir=$RPM_BUILD_ROOT%{_infodir}
 
-gzip -9nf $RPM_BUILD_ROOT%{_infodir}/gforth.info*
+ln -sf gforth-0.4.0 $RPM_BUILD_ROOT%{_bindir}/gforth
+ln -sf gforthmi-0.4.0 $RPM_BUILD_ROOT%{_bindir}/gforthmi
+
+strip $RPM_BUILD_ROOT%{_bindir}/* || :
+
+gzip -9nf $RPM_BUILD_ROOT%{_infodir}/gforth.info* \
+	$RPM_BUILD_ROOT%{_mandir}/man1/* \
+	AUTHORS README NEWS BUGS ToDo
 
 %post
 /sbin/install-info %{_infodir}/gforth.info.gz /usr/info/dir \
@@ -54,8 +61,8 @@ gzip -9nf $RPM_BUILD_ROOT%{_infodir}/gforth.info*
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(644,root,root,755)
-%doc README TAGS BUGS ToDo
+%defattr(644,root,root,755)
+%doc {AUTHORS,README,NEWS,BUGS,ToDo}.gz
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/gforth
 %{_infodir}/*info*
