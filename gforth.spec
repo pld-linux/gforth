@@ -3,9 +3,10 @@ Summary(pl):	Kompilator GNU Forth
 Name:		gforth
 Version:	0.4.0
 Release:	1
-Copyright:	GPL
-Group:		Languages
-Source:		ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz 
+License:	GPL
+Group:		Development/Languages
+Group(pl):	Programowanie/Jêzyki
+Source0:	ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -14,13 +15,13 @@ language. It works nicely with the Emacs editor, offers some nice
 features such as input completion and history and a powerful locals
 facility, and it even has (the beginnings of) a manual. Gforth employs
 traditional implementation techniques: its inner innerpreter is
-indirect or direct threaded.  Gforth is distributed under the GNU
+indirect or direct threaded. Gforth is distributed under the GNU
 General Public license (see COPYING).
 
 %description -l pl
 Gforth jest szybk± i przenoszaln± implementacj± jêzyka ANS Forth.
-Dobrae wspólpracuje z edytorem Emacs oferuj±c takie cechy jak kompletowanie
-i historiê wprowadzania ci±gów znaków.
+Dobrae wspólpracuje z edytorem Emacs oferuj±c takie cechy jak
+kompletowanie i historiê wprowadzania ci±gów znaków.
 
 %prep
 %setup -q
@@ -32,8 +33,8 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install prefix=$RPM_BUILD_ROOT/usr \
-	exec_prefix=$RPM_BUILD_ROOT/usr \
+make install prefix=$RPM_BUILD_ROOT%{_prefix} \
+	exec_prefix=$RPM_BUILD_ROOT%{_prefix} \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
 	infodir=$RPM_BUILD_ROOT%{_infodir}
 
@@ -47,14 +48,10 @@ gzip -9nf $RPM_BUILD_ROOT%{_infodir}/gforth.info* \
 	AUTHORS README NEWS BUGS ToDo
 
 %post
-/sbin/install-info %{_infodir}/gforth.info.gz /usr/info/dir \
---section "Programming:" --entry \
-"* Gforth: (gforth.info).                       The GNU ANS Forth."
+[ -x /usr/sbin/fix-info-dir ] && /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
 %preun
-/sbin/install-info --delete %{_infodir}/gforth.info.gz /usr/info/dir \
---section "Programming:" --entry \
-"* Gforth: (gforth.info).                       The GNU ANS Forth."
+[ -x /usr/sbin/fix-info-dir ] && /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
