@@ -29,7 +29,7 @@ kompletowanie i historiê wprowadzania ci±gów znaków.
 %build
 %configure
 
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
