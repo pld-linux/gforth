@@ -5,8 +5,6 @@ Version:	0.4.0
 Release:	3
 License:	GPL
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 Source0:	ftp://ftp.complang.tuwien.ac.at/pub/forth/gforth/%{name}-%{version}.tar.gz
 Patch0:		%{name}-info.patch
 BuildRequires:	texinfo
