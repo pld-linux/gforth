@@ -1,5 +1,5 @@
 Summary:	GNU Forth Language
-Summary(pl):	Kompilator GNU Forth 
+Summary(pl):	Kompilator GNU Forth
 Name:		gforth
 Version:	0.4.0
 Release:	3
