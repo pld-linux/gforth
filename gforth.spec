@@ -28,8 +28,8 @@ i historiê wprowadzania ci±gów znaków.
 %patch0 -p1
 
 %build
-./configure \
-	--prefix=/usr
+%configure
+
 make
 
 %install
