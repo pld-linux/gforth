@@ -60,7 +60,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gforth
 %{_infodir}/*info*
 %{_mandir}/man1/*
-/usr/share/gforth
+%{_datadir}/gforth
 
 %changelog
 * Sun Nov 22 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
