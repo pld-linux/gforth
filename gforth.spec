@@ -7,6 +7,9 @@ License:	GPL
 Group:		Development/Languages
 Source0:	ftp://ftp.complang.tuwien.ac.at/pub/forth/gforth/%{name}-%{version}.tar.gz
 Patch0:		%{name}-info.patch
+Patch1:		gforth-AC_CYGWIN.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -26,10 +29,15 @@ kompletowanie i historiê wprowadzania ci±gów znaków.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
-%configure2_13
+rm -f missiong
+aclocal
+autoconf
+cp -f /usr/share/automake/{missing,mkinstalldirs,install-sh,config*} .
+%configure
 
 %{__make}
 
