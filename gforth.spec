@@ -7,7 +7,7 @@ Copyright:   GPL
 Group:       Languages
 Source:      ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz 
 Patch0:      gforth-makefile.patch
-Buildroot:   /tmp/%{name}-%{version}-root
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 Gforth is a fast and portable implementation of the ANS Forth
