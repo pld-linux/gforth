@@ -1,0 +1,25 @@
+--- gforth-0.6.1/configure.in.orig	2003-03-11 22:05:47.000000000 +0100
++++ gforth-0.6.1/configure.in	2003-05-11 01:50:25.000000000 +0200
+@@ -138,9 +138,6 @@
+ 	i*86)
+ 		machine=386
+ 		CFLAGS="$CFLAGS -fomit-frame-pointer -fforce-addr -fforce-mem"
+-		CFLAGS_1="$CFLAGS"
+-		CFLAGS="$CFLAGS -march=pentium"
+-		AC_TRY_COMPILE(,,,CFLAGS="$CFLAGS_1 -m486")
+ 		;;
+ #generic should work for IA64
+ #	ia64*)
+--- gforth-0.6.1/engine/Makefile.in.orig	2003-03-09 16:06:46.000000000 +0100
++++ gforth-0.6.1/engine/Makefile.in	2003-05-11 01:51:18.000000000 +0200
+@@ -74,8 +74,8 @@
+ SWITCHES = $(XCFLAGS) $(XDEFINES)
+ ENGINE_FLAGS = @ENGINE_FLAGS@ -fno-defer-pop -fcaller-saves
+ DEBUGFLAG = @DEBUGFLAG@
+-CFLAGS	= $(DEBUGFLAG) -I$(srcdir)/../arch/$(machine) -I. -O2 -Wall $(SWITCHES) -DDEFAULTPATH=\"$(FORTHPATH)\"
+-CFLAGS2	= $(DEBUGFLAG) -I$(srcdir)/../arch/$(machine) -I. -O2 -Wall $(SWITCHES) -DDEFAULTPATH=\"$(FORTHPATH)\"
++CFLAGS	= $(DEBUGFLAG) -I$(srcdir)/../arch/$(machine) -I. -Wall $(SWITCHES) -DDEFAULTPATH=\"$(FORTHPATH)\"
++CFLAGS2	= $(DEBUGFLAG) -I$(srcdir)/../arch/$(machine) -I. -Wall $(SWITCHES) -DDEFAULTPATH=\"$(FORTHPATH)\"
+ FORTHKFLAGS= --die-on-signal -p "..$(PATHSEP)$(srcdir)" -i ../$(kernel_fi)
+ FORTHK	= ../gforth $(FORTHKFLAGS)
+ 

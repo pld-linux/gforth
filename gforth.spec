@@ -1,14 +1,14 @@
 Summary:	GNU Forth Language
 Summary(pl):	Kompilator GNU Forth
 Name:		gforth
-Version:	0.4.0
-Release:	3
+Version:	0.6.1
+Release:	1
 License:	GPL
 Group:		Development/Languages
-Source0:	ftp://ftp.complang.tuwien.ac.at/pub/forth/gforth/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.gnu.org/gnu/gforth/%{name}-%{version}.tar.gz
 Patch0:		%{name}-info.patch
-Patch1:		gforth-AC_CYGWIN.patch
-BuildRequires:	autoconf
+Patch1:		%{name}-opt.patch
+BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -18,41 +18,46 @@ Gforth is a fast and portable implementation of the ANS Forth
 language. It works nicely with the Emacs editor, offers some nice
 features such as input completion and history and a powerful locals
 facility, and it even has (the beginnings of) a manual. Gforth employs
-traditional implementation techniques: its inner innerpreter is
+traditional implementation techniques: its inner interpreter is
 indirect or direct threaded. Gforth is distributed under the GNU
-General Public license (see COPYING).
+General Public License.
 
 %description -l pl
-Gforth jest szybk± i przenoszaln± implementacj± jêzyka ANS Forth.
-Dobrae wspólpracuje z edytorem Emacs oferuj±c takie cechy jak
-kompletowanie i historiê wprowadzania ci±gów znaków.
+Gforth jest szybk± i przeno¶n± implementacj± jêzyka ANS Forth. Dobrze
+wspó³pracuje z edytorem Emacs, oferuj±c takie cechy jak dope³nianie i
+historiê wprowadzania ci±gów znaków, ma tak¿e zacz±tki podrêcznika.
+Gforth wykorzystuje tradycyjne techniki implementacji: jego wewnêtrzny
+interpreter jest po¶rednio lub bezpo¶rednio w±tkowany. Gforth jest
+rozpowszechniany na Powszechnej Licencji Publicznej GNU.
 
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
 
+rm -f doc/*.info*
+
 %build
-rm -f missiong
 %{__aclocal}
 %{__autoconf}
-cp -f /usr/share/automake/{missing,mkinstalldirs,install-sh,config*} .
 %configure
 
 %{__make}
 
-(cd doc; makeinfo gforth.ds)
+cd doc
+makeinfo gforth.ds
+makeinfo vmgen.texi
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install prefix=$RPM_BUILD_ROOT%{_prefix} \
+%{__make} install \
+	prefix=$RPM_BUILD_ROOT%{_prefix} \
 	exec_prefix=$RPM_BUILD_ROOT%{_prefix} \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
 	infodir=$RPM_BUILD_ROOT%{_infodir}
 
-rm -f $RPM_BUILD_ROOT%{_bindir}/{gforth,gforthmi}
-mv -f $RPM_BUILD_ROOT%{_bindir}/gforth-0.4.0 $RPM_BUILD_ROOT%{_bindir}/gforth
-mv -f $RPM_BUILD_ROOT%{_bindir}/gforthmi-0.4.0 $RPM_BUILD_ROOT%{_bindir}/gforthmi
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %post
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
@@ -60,17 +65,15 @@ mv -f $RPM_BUILD_ROOT%{_bindir}/gforthmi-0.4.0 $RPM_BUILD_ROOT%{_bindir}/gforthm
 %postun
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS BUGS ToDo
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libdir}/gforth
+%dir %{_libdir}/gforth/%{version}
+%attr (755,root,root) %{_libdir}/gforth/%{version}/gforth-ditc
+%{_libdir}/gforth/%{version}/gforth.fi
 %dir %{_libdir}/gforth/site-forth
-%dir %{_libdir}/gforth/0.4.0
-%attr (755,root,root) %{_libdir}/gforth/0.4.0/gforth.fi
-%{_infodir}/*info*
+%{_infodir}/*.info*
 %{_mandir}/man1/*
 %{_datadir}/gforth
