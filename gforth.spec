@@ -6,7 +6,7 @@ Release:	1
 Copyright:	GPL
 Group:		Languages
 Source:		ftp://prep.ai.mit.edu/pub/gnu/%{name}-%{version}.tar.gz 
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Gforth is a fast and portable implementation of the ANS Forth
@@ -55,7 +55,6 @@ gzip -9nf $RPM_BUILD_ROOT%{_infodir}/gforth.info* \
 /sbin/install-info --delete %{_infodir}/gforth.info.gz /usr/info/dir \
 --section "Programming:" --entry \
 "* Gforth: (gforth.info).                       The GNU ANS Forth."
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
