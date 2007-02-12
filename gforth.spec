@@ -1,5 +1,5 @@
 Summary:	GNU Forth Language
-Summary(pl):	Kompilator GNU Forth
+Summary(pl.UTF-8):   Kompilator GNU Forth
 Name:		gforth
 Version:	0.6.2
 Release:	1
@@ -24,12 +24,12 @@ traditional implementation techniques: its inner interpreter is
 indirect or direct threaded. Gforth is distributed under the GNU
 General Public License.
 
-%description -l pl
-Gforth jest szybk± i przeno¶n± implementacj± jêzyka ANS Forth. Dobrze
-wspó³pracuje z edytorem Emacs, oferuj±c takie cechy jak dope³nianie i
-historiê wprowadzania ci±gów znaków, ma tak¿e zacz±tki podrêcznika.
-Gforth wykorzystuje tradycyjne techniki implementacji: jego wewnêtrzny
-interpreter jest po¶rednio lub bezpo¶rednio w±tkowany. Gforth jest
+%description -l pl.UTF-8
+Gforth jest szybkÄ… i przenoÅ›nÄ… implementacjÄ… jÄ™zyka ANS Forth. Dobrze
+wspÃ³Å‚pracuje z edytorem Emacs, oferujÄ…c takie cechy jak dopeÅ‚nianie i
+historiÄ™ wprowadzania ciÄ…gÃ³w znakÃ³w, ma takÅ¼e zaczÄ…tki podrÄ™cznika.
+Gforth wykorzystuje tradycyjne techniki implementacji: jego wewnÄ™trzny
+interpreter jest poÅ›rednio lub bezpoÅ›rednio wÄ…tkowany. Gforth jest
 rozpowszechniany na Powszechnej Licencji Publicznej GNU.
 
 %prep
