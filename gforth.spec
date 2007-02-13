@@ -1,5 +1,5 @@
 Summary:	GNU Forth Language
-Summary(pl.UTF-8):   Kompilator GNU Forth
+Summary(pl.UTF-8):	Kompilator GNU Forth
 Name:		gforth
 Version:	0.6.2
 Release:	1
