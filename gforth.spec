@@ -5,7 +5,7 @@ Version:	0.6.2
 Release:	1
 License:	GPL
 Group:		Development/Languages
-Source0:	ftp://ftp.gnu.org/gnu/gforth/%{name}-%{version}.tar.gz
+Source0:	http://ftp.gnu.org/gnu/gforth/%{name}-%{version}.tar.gz
 # Source0-md5:	869112bd762b07fc4d2038a2d9965148
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-opt.patch
