@@ -1,17 +1,20 @@
 Summary:	GNU Forth Language
 Summary(pl.UTF-8):	Kompilator GNU Forth
 Name:		gforth
-Version:	0.6.2
+Version:	0.7.0
 Release:	1
-License:	GPL
+License:	GPL v3+
 Group:		Development/Languages
 Source0:	http://ftp.gnu.org/gnu/gforth/%{name}-%{version}.tar.gz
-# Source0-md5:	869112bd762b07fc4d2038a2d9965148
+# Source0-md5:	2979ae86ede73ce2b3576dae957f4098
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-opt.patch
-Patch2:		%{name}-acfix.patch
+URL:		http://gnu.org/software/gforth/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
+BuildRequires:	ffcall-devel
+BuildRequires:	libltdl-devel
+BuildRequires:	libtool
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -36,7 +39,6 @@ rozpowszechniany na Powszechnej Licencji Publicznej GNU.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 rm -f doc/*.info*
 
@@ -47,37 +49,39 @@ rm -f doc/*.info*
 
 %{__make}
 
-cd doc
-makeinfo gforth.ds
-makeinfo vmgen.texi
+%{__make} info
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	prefix=$RPM_BUILD_ROOT%{_prefix} \
-	exec_prefix=$RPM_BUILD_ROOT%{_prefix} \
-	mandir=$RPM_BUILD_ROOT%{_mandir} \
-	infodir=$RPM_BUILD_ROOT%{_infodir}
+	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gforth/%{version}/libcc-named/*.{la,a}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p	/sbin/postshell
+%post	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun	-p	/sbin/postshell
+%postun	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS README NEWS BUGS ToDo
-%attr(755,root,root) %{_bindir}/*
+%doc AUTHORS BUGS NEWS NEWS.vmgen README README.vmgen ToDo
+%attr(755,root,root) %{_bindir}/gforth*
+%attr(755,root,root) %{_bindir}/vmgen*
 %dir %{_libdir}/gforth
 %dir %{_libdir}/gforth/%{version}
-%attr (755,root,root) %{_libdir}/gforth/%{version}/gforth-ditc
+%dir %{_libdir}/gforth/%{version}/libcc-named
+%attr(755,root,root) %{_libdir}/gforth/%{version}/libcc-named/*.so*
+%attr(755,root,root) %{_libdir}/gforth/%{version}/gforth-ditc
 %{_libdir}/gforth/%{version}/gforth.fi
 %dir %{_libdir}/gforth/site-forth
-%{_infodir}/*.info*
-%{_mandir}/man1/*
+%{_includedir}/gforth
+%{_infodir}/gforth.info*
+%{_infodir}/vmgen.info*
+%{_mandir}/man1/gforth.1*
 %{_datadir}/gforth
