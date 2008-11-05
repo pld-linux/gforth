@@ -1,12 +1,27 @@
---- gforth-0.6.1/configure.in.orig	2003-03-11 22:05:47.000000000 +0100
-+++ gforth-0.6.1/configure.in	2003-05-11 01:50:25.000000000 +0200
-@@ -138,9 +138,6 @@
+--- gforth-0.7.0/configure.in.orig	2008-11-02 18:14:57.000000000 +0100
++++ gforth-0.7.0/configure.in	2008-11-04 23:15:32.189552084 +0100
+@@ -236,14 +236,11 @@
+ 		;;
+ 	i486)
+ 		machine=386
+-		CFLAGS="$CFLAGS -fomit-frame-pointer -fforce-addr -m486"
++		CFLAGS="$CFLAGS -fomit-frame-pointer -fforce-addr"
+ 		;;
  	i*86)
  		machine=386
- 		CFLAGS="$CFLAGS -fomit-frame-pointer -fforce-addr -fforce-mem"
+ 		CFLAGS="$CFLAGS -fomit-frame-pointer -fforce-addr"
 -		CFLAGS_1="$CFLAGS"
 -		CFLAGS="$CFLAGS -march=pentium"
 -		AC_TRY_COMPILE(,,,CFLAGS="$CFLAGS_1 -m486")
  		;;
- #generic should work for IA64
- #	ia64*)
+ 	x86_64)
+ 		case $CC
+@@ -251,8 +248,6 @@
+ 		    *-m32*)
+ 		    	machine=386
+ 			CFLAGS="$CFLAGS -fomit-frame-pointer -fforce-addr"
+-			CFLAGS_1="$CFLAGS"
+-			CFLAGS="$CFLAGS -march=athlon64"
+ 			;;
+ 		    *)
+ 		    	machine=amd64
