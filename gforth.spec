@@ -49,7 +49,7 @@ rozpowszechniany na Powszechnej Licencji Publicznej GNU.
 %{__autoconf}
 %configure
 
-%{__make}
+%{__make} -j1
 
 %{__make} info
 
