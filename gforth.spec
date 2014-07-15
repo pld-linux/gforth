@@ -1,12 +1,12 @@
 Summary:	GNU Forth Language
 Summary(pl.UTF-8):	Kompilator GNU Forth
 Name:		gforth
-Version:	0.7.0
+Version:	0.7.3
 Release:	1
 License:	GPL v3+
 Group:		Development/Languages
 Source0:	http://ftp.gnu.org/gnu/gforth/%{name}-%{version}.tar.gz
-# Source0-md5:	2979ae86ede73ce2b3576dae957f4098
+# Source0-md5:	ff484391e5cdf405867fcf96341820ab
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-opt.patch
 URL:		http://gnu.org/software/gforth/
@@ -17,6 +17,8 @@ BuildRequires:	libltdl-devel
 BuildRequires:	libtool
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		skip_post_check_so	.*%{_libdir}/gforth/%{version}/libcc-named/.*
 
 %description
 Gforth is a fast and portable implementation of the ANS Forth
@@ -40,7 +42,7 @@ rozpowszechniany na Powszechnej Licencji Publicznej GNU.
 %patch0 -p1
 %patch1 -p1
 
-rm -f doc/*.info*
+%{__rm} doc/*.info*
 
 %build
 %{__aclocal}

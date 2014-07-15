@@ -1,12 +1,6 @@
---- gforth-0.7.0/configure.in.orig	2008-11-02 18:14:57.000000000 +0100
-+++ gforth-0.7.0/configure.in	2008-11-04 23:15:32.189552084 +0100
-@@ -236,14 +236,11 @@
- 		;;
- 	i486)
- 		machine=386
--		CFLAGS="$CFLAGS -fomit-frame-pointer -fforce-addr -m486"
-+		CFLAGS="$CFLAGS -fomit-frame-pointer -fforce-addr"
- 		;;
+--- gforth-0.7.3/configure.in.orig	2014-06-14 00:52:10.408636383 +0200
++++ gforth-0.7.3/configure.in	2014-07-14 20:19:01.629336298 +0200
+@@ -250,9 +250,6 @@
  	i*86)
  		machine=386
  		CFLAGS="$CFLAGS -fomit-frame-pointer -fforce-addr"
@@ -16,7 +10,7 @@
  		;;
  	x86_64)
  		case $CC
-@@ -251,8 +248,6 @@
+@@ -260,8 +257,6 @@
  		    *-m32*)
  		    	machine=386
  			CFLAGS="$CFLAGS -fomit-frame-pointer -fforce-addr"
