@@ -2,7 +2,7 @@ Summary:	GNU Forth Language
 Summary(pl.UTF-8):	Kompilator GNU Forth
 Name:		gforth
 Version:	0.7.3
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Development/Languages
 Source0:	http://ftp.gnu.org/gnu/gforth/%{name}-%{version}.tar.gz
